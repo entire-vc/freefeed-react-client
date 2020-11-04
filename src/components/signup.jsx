@@ -16,6 +16,8 @@ export default React.memo(function Signup() {
   const registrationOpen = !serverInfoStatus.success || serverInfo.registrationOpen;
   const withForm = !!CONFIG.registrationsLimit.emailFormIframeSrc;
 
+  const withExtProfile = useSelector((state) => state.extAuth.signInResult.status === 'continue');
+
   return (
     <div className="box">
       <div className="box-header-timeline">Hello</div>
@@ -25,8 +27,7 @@ export default React.memo(function Signup() {
           {registrationOpen ? (
             <>
               <CookiesBanner />
-              <SignupForm />
-              <ExtAuthSignup />
+              {withExtProfile ? <SignupForm /> : <ExtAuthSignup />}
             </>
           ) : (
             <>
@@ -87,7 +88,6 @@ const ExtAuthSignup = React.memo(function ExtAuthSignup() {
 
   return (
     <>
-      <p>Or use external service profile to create {CONFIG.siteTitle} account:</p>
       <ExtAuthButtons mode={SIGN_UP} />
       {result.status === 'signed-in' && (
         <div className="alert alert-success" role="alert">

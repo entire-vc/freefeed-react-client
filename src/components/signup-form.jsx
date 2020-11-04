@@ -8,7 +8,6 @@ import { useField, useForm } from 'react-final-form-hooks';
 
 import { signUp } from '../redux/action-creators';
 import { FieldsetWrapper } from './fieldset-wrapper';
-import { providerTitle, useExtAuthProviders } from './ext-auth-helpers';
 import { Throbber } from './throbber';
 
 const captchaKey = CONFIG.captcha.siteKey;
@@ -89,12 +88,6 @@ export default React.memo(function SignupForm({ invitationId = null, lang = 'en'
       key: res.externalProfileKey,
     };
   });
-  const [providers] = useExtAuthProviders();
-
-  const extProfileProvider = useMemo(() => providers.find((p) => p.id === extProfile?.provider), [
-    extProfile,
-    providers,
-  ]);
 
   const form = useForm(
     useMemo(
@@ -238,29 +231,6 @@ export default React.memo(function SignupForm({ invitationId = null, lang = 'en'
               {enRu(
                 'Subscribe to recommended users and groups',
                 'Подписаться на рекомендованных пользователей и группы',
-              )}
-            </label>
-          </div>
-        )}
-
-        {extProfile && (
-          <div className={groupErrClass(connectExtProfile, 'checkbox')}>
-            <label>
-              <input
-                type="checkbox"
-                value="1"
-                checked={connectExtProfile.input.value}
-                {...connectExtProfile.input}
-              />{' '}
-              {enRu(
-                <>
-                  Allow to sign in via {providerTitle(extProfileProvider, { withText: false })}{' '}
-                  {extProfile.name} account
-                </>,
-                <>
-                  Разрешить вход через аккаунт{' '}
-                  {providerTitle(extProfileProvider, { withText: false })} {extProfile.name}
-                </>,
               )}
             </label>
           </div>
