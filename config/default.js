@@ -7,7 +7,7 @@ export default {
     root: 'https://candy.freefeed.net',
   },
 
-  siteTitle: 'FreeFeed',
+  siteTitle: 'Venture Crew',
 
   siteOrigin: 'http://localhost:3333',
 

@@ -1,22 +1,22 @@
 /* global CONFIG */
 import React, { useEffect } from 'react';
 import { Link } from 'react-router';
-import { connect, useDispatch, useSelector } from 'react-redux';
-import format from 'date-fns/format';
+import { useDispatch, useSelector } from 'react-redux';
+// import format from 'date-fns/format';
 
-import { preventDefault, htmlSafe } from '../utils';
-import { listHomeFeeds, setUserColorScheme } from '../redux/action-creators';
-import {
-  SCHEME_DARK,
-  SCHEME_SYSTEM,
-  SCHEME_LIGHT,
-  systemColorSchemeSupported,
-} from '../services/appearance';
-import { bookmarkletHref } from '../bookmarklet/loader';
+import { preventDefault } from '../utils';
+import { listHomeFeeds } from '../redux/action-creators';
+// import {
+//   SCHEME_DARK,
+//   SCHEME_SYSTEM,
+//   SCHEME_LIGHT,
+//   systemColorSchemeSupported,
+// } from '../services/appearance';
+// import { bookmarkletHref } from '../bookmarklet/loader';
 import UserName from './user-name';
 import RecentGroups from './recent-groups';
 import ErrorBoundary from './error-boundary';
-import { InvisibleSelect } from './invisibe-select';
+// import { InvisibleSelect } from './invisibe-select';
 import { UserPicture } from './user-picture';
 import { SidebarHomeFeeds } from './sidebar-homefeeds';
 
@@ -129,9 +129,9 @@ const SideBarFreeFeed = () => (
         <li>
           <Link to="/search">Search</Link>
         </li>
-        <li className="p-invites">
+        {/* <li className="p-invites">
           <Link to="/invite">Invite</Link>
-        </li>
+        </li> */}
         <li>
           <Link to="/filter/everything">Everything</Link>
         </li>
@@ -139,47 +139,51 @@ const SideBarFreeFeed = () => (
           <Link to="/all-groups">Public groups</Link>
         </li>
         <li>
-          <Link to="/support">Support</Link> /{' '}
+          <Link to="/support">Support</Link>
+          {/* /{' '}
           <a href="https://github.com/FreeFeed/freefeed-server/wiki/FAQ" target="_blank">
             FAQ
-          </a>
+          </a> */}
         </li>
         <li>
-          <Link to="/freefeed">News</Link>
+          <Link to="/entire">News</Link>
         </li>
+        {/* <li>
+          <Link to="/about/donate">Donate</Link>
+        </li> */}
       </ul>
     </div>
   </div>
 );
 
-const SideBarMemories = () => {
-  const today = new Date();
-  const todayString = format(today, 'MMdd');
-  const todayYear = today.getFullYear();
-  const yearLinks = [
-    [1, 2, 3, 4, 5, 6],
-    [7, 8, 9, 10, 11, 12],
-  ].map((years, index) => (
-    <div className="years-row" key={index}>
-      {years.map((offset) => {
-        const linkYear = todayYear - offset;
-        return (
-          <Link key={`link-${offset}`} to={`/memories/${linkYear}${todayString}`}>
-            {linkYear}
-          </Link>
-        );
-      })}
-    </div>
-  ));
-  return (
-    <div className="box">
-      <div className="box-header-memories">Memories of {format(today, 'MMMM\u00A0d')}</div>
-      <div className="box-body">
-        <div className="year-links-row">{yearLinks}</div>
-      </div>
-    </div>
-  );
-};
+// const SideBarMemories = () => {
+//   const today = new Date();
+//   const todayString = format(today, 'MMdd');
+//   const todayYear = today.getFullYear();
+//   const yearLinks = [
+//     [1, 2, 3, 4, 5, 6],
+//     [7, 8, 9, 10, 11, 12],
+//   ].map((years, index) => (
+//     <div className="years-row" key={index}>
+//       {years.map((offset) => {
+//         const linkYear = todayYear - offset;
+//         return (
+//           <Link key={`link-${offset}`} to={`/memories/${linkYear}${todayString}`}>
+//             {linkYear}
+//           </Link>
+//         );
+//       })}
+//     </div>
+//   ));
+//   return (
+//     <div className="box">
+//       <div className="box-header-memories">Memories of {format(today, 'MMMM\u00A0d')}</div>
+//       <div className="box-body">
+//         <div className="year-links-row">{yearLinks}</div>
+//       </div>
+//     </div>
+//   );
+// };
 
 const SideBarGroups = ({ recentGroups }) => (
   <div className="box">
@@ -193,34 +197,34 @@ const SideBarGroups = ({ recentGroups }) => (
   </div>
 );
 
-const SideBarBookmarklet = () => (
-  <div className="box">
-    <div className="box-header-groups">Bookmarklet</div>
-    <div className="box-footer">
-      Once added to your toolbar, this button will let you share web pages on {CONFIG.siteTitle}.
-      You can even attach thumbnails of images from the page you share!
-    </div>
-    <div className="box-footer">
-      Click and drag{' '}
-      <span
-        // eslint-disable-next-line react/no-danger
-        dangerouslySetInnerHTML={{
-          __html: `<a class="bookmarklet-button" href="${htmlSafe(
-            bookmarkletHref(),
-          )}" onclick="return false">Share on ${CONFIG.siteTitle}</a>`,
-        }}
-      />{' '}
-      to&nbsp;your toolbar.
-    </div>
-    <div className="box-footer">
-      There is also a{' '}
-      <a href="https://chrome.google.com/webstore/detail/share-on-freefeed/dngijpbccpnbjlpjomjmlppfgmnnilah">
-        <span style={{ textDecoration: 'underline', cursor: 'pointer' }}>Chrome Extension</span>
-      </a>{' '}
-      for sharing on {CONFIG.siteTitle}.
-    </div>
-  </div>
-);
+// const SideBarBookmarklet = () => (
+//   <div className="box">
+//     <div className="box-header-groups">Bookmarklet</div>
+//     <div className="box-footer">
+//       Once added to your toolbar, this button will let you share web pages on {CONFIG.siteTitle}.
+//       You can even attach thumbnails of images from the page you share!
+//     </div>
+//     <div className="box-footer">
+//       Click and drag{' '}
+//       <span
+//         // eslint-disable-next-line react/no-danger
+//         dangerouslySetInnerHTML={{
+//           __html: `<a class="bookmarklet-button" href="${htmlSafe(
+//             bookmarkletHref(),
+//           )}" onclick="return false">Share on ${CONFIG.siteTitle}</a>`,
+//         }}
+//       />{' '}
+//       to&nbsp;your toolbar.
+//     </div>
+//     <div className="box-footer">
+//       There is also a{' '}
+//       <a href="https://chrome.google.com/webstore/detail/share-on-freefeed/dngijpbccpnbjlpjomjmlppfgmnnilah">
+//         <span style={{ textDecoration: 'underline', cursor: 'pointer' }}>Chrome Extension</span>
+//       </a>{' '}
+//       for sharing on {CONFIG.siteTitle}.
+//     </div>
+//   </div>
+// );
 
 const SideBarArchive = ({ user }) => {
   if (!user || !user.privateMeta) {
@@ -249,41 +253,41 @@ const SideBarArchive = ({ user }) => {
   );
 };
 
-const SideBarAppearance = connect(
-  ({ userColorScheme }) => ({ userColorScheme }),
-  (dispatch) => ({ onChange: (e) => dispatch(setUserColorScheme(e.target.value)) }),
-)(({ userColorScheme, onChange }) => {
-  let value = userColorScheme;
-  if (!systemColorSchemeSupported && value === SCHEME_SYSTEM) {
-    value = SCHEME_LIGHT;
-  }
-  return (
-    <div className="box">
-      <div className="box-header-groups">Appearance</div>
-      <div className="box-body">
-        <ul>
-          <li>
-            <div>
-              Color Scheme:{' '}
-              <InvisibleSelect value={value} onChange={onChange} className="color-scheme-selector">
-                <option value={SCHEME_LIGHT}>Light</option>
-                {systemColorSchemeSupported && <option value={SCHEME_SYSTEM}>Auto</option>}
-                <option value={SCHEME_DARK}>Dark</option>
-              </InvisibleSelect>{' '}
-              <span className="color-scheme-hint">
-                {value === SCHEME_LIGHT
-                  ? 'default'
-                  : value === SCHEME_SYSTEM
-                  ? 'as in your OS'
-                  : null}
-              </span>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </div>
-  );
-});
+// const SideBarAppearance = connect(
+//   ({ userColorScheme }) => ({ userColorScheme }),
+//   (dispatch) => ({ onChange: (e) => dispatch(setUserColorScheme(e.target.value)) }),
+// )(({ userColorScheme, onChange }) => {
+//   let value = userColorScheme;
+//   if (!systemColorSchemeSupported && value === SCHEME_SYSTEM) {
+//     value = SCHEME_LIGHT;
+//   }
+//   return (
+//     <div className="box">
+//       <div className="box-header-groups">Appearance</div>
+//       <div className="box-body">
+//         <ul>
+//           <li>
+//             <div>
+//               Color Scheme:{' '}
+//               <InvisibleSelect value={value} onChange={onChange} className="color-scheme-selector">
+//                 <option value={SCHEME_LIGHT}>Light</option>
+//                 {systemColorSchemeSupported && <option value={SCHEME_SYSTEM}>Auto</option>}
+//                 <option value={SCHEME_DARK}>Dark</option>
+//               </InvisibleSelect>{' '}
+//               <span className="color-scheme-hint">
+//                 {value === SCHEME_LIGHT
+//                   ? 'default'
+//                   : value === SCHEME_SYSTEM
+//                   ? 'as in your OS'
+//                   : null}
+//               </span>
+//             </div>
+//           </li>
+//         </ul>
+//       </div>
+//     </div>
+//   );
+// });
 
 const SideBar = ({ user, signOut, recentGroups }) => {
   return (
@@ -294,9 +298,9 @@ const SideBar = ({ user, signOut, recentGroups }) => {
         <SideBarGroups recentGroups={recentGroups} />
         <SideBarArchive user={user} />
         <SideBarFreeFeed />
-        <SideBarBookmarklet />
-        <SideBarMemories />
-        <SideBarAppearance />
+        {/* <SideBarBookmarklet /> */}
+        {/* <SideBarMemories /> */}
+        {/* <SideBarAppearance /> */}
       </ErrorBoundary>
     </div>
   );
