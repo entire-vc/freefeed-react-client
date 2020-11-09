@@ -147,9 +147,6 @@ const SideBarFreeFeed = () => (
         <li>
           <Link to="/freefeed">News</Link>
         </li>
-        <li>
-          <Link to="/about/donate">Donate</Link>
-        </li>
       </ul>
     </div>
   </div>
