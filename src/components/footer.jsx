@@ -22,6 +22,7 @@ const SideBarAppearance = connect(
   }
   const style = {
     float: 'right',
+    paddingTop: '10px',
   };
   return (
     <div style={style}>
