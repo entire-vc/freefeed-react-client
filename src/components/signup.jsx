@@ -20,10 +20,10 @@ export default React.memo(function Signup() {
 
   return (
     <div className="box">
-      <div className="box-header-timeline">Hello</div>
+      <div className="box-header-timeline">Sign up</div>
       <div className="box-body">
         <div className="col-md-12">
-          <h2 className="p-signin-header">Sign up</h2>
+          <h2 className="p-signin-header"> </h2>
           {registrationOpen ? (
             <>
               <CookiesBanner />

@@ -13,10 +13,10 @@ import { ExtAuthButtons } from './ext-auth-buttons';
 export default React.memo(function SignInPage() {
   return (
     <div className="box">
-      <div className="box-header-timeline">Welcome to {CONFIG.siteTitle}!</div>
+      <div className="box-header-timeline">Sign in</div>
       <div className="box-body">
         <div className="col-md-12">
-          <h2 className="p-signin-header">Sign in</h2>
+          <h2 className="p-signin-header"> </h2>
           <CookiesBanner />
           <ErrorBoundary>
             <ExtAuthSignIn />
