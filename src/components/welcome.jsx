@@ -27,14 +27,7 @@ export default () => {
       </p>
       {withExtProfile ? <SignupForm /> : <ExtAuthSignup />}
       <p>
-        <b>
-          {/* <Link to="/signup" className="inline-header"> */}
-          Sign up
-          {/* </Link> */}
-        </b>{' '}
-        now or {/* <Link to="/signin" className="inline-header"> */}
-        <b>sign in</b> {/* </Link>{' '} */}
-        if you already have an account.
+        <b>Sign up</b> now or <b>sign in</b> if you already have an account.
       </p>
       <ErrorBoundary>
         <ExtAuthSignIn />
