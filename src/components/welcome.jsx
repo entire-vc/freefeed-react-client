@@ -26,9 +26,7 @@ export default () => {
         </a>
       </p>
       {withExtProfile ? <SignupForm /> : <ExtAuthSignup />}
-      <p>
-        <b>Sign up</b> now or <b>sign in</b> if you already have an account.
-      </p>
+      <p>If you already have an account.</p>
       <ErrorBoundary>
         <ExtAuthSignIn />
       </ErrorBoundary>
