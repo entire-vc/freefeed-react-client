@@ -138,7 +138,9 @@ const SideBarFreeFeed = () => (
         <li>
           <Link to="/all-groups">Public groups</Link>
         </li>
-        <li>Knowledge Base (url /kb/)</li>
+        <li>
+          <Link to="/kb/">Knowledge Base</Link>
+        </li>
         <li>
           <Link to="/support">Support</Link>
           {/* /{' '}
